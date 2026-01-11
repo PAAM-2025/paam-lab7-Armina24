@@ -2,6 +2,7 @@ package upt.paam.lab7
 
 import android.Manifest
 import android.app.Notification
+import android.app.PendingIntent
 import android.app.Service
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -52,10 +53,29 @@ class MyForegroundService : Service() {
         //   - Use "service_channel" as the channelId
         //   - Set a title, text, and small icon
         //   - Mark the notification as ongoing (persistent)`
-        return TODO("Provide the return value")
+
+        val builder = NotificationCompat.Builder(this, "service_channel")
+            .setSmallIcon(android.R.drawable.ic_dialog_info)
+            .setContentTitle("My service")
+            .setContentText("Hello! This is my first notification.")
+            .setOngoing(true)
+        return builder.build()
 
         // TODO 3: Create a different notification with NotificationCompat.Builder inside your service
         // that opens a certain screen when you press on it. Comment one implementation when you're done
+
+        //val intent = Intent(this, AlertDetails::class.java).apply {
+          //  flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        //}
+        //val pendingIntent: PendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_IMMUTABLE)
+
+        //val builder = NotificationCompat.Builder(this, "service_2")
+          //  .setSmallIcon(android.R.drawable.ic_notification_overlay)
+            //.setContentTitle("My second notification")
+            //.setContentText("Hello World!")
+            //.setPriority(NotificationCompat.PRIORITY_DEFAULT)
+            //.setContentIntent(pendingIntent)
+            //.setAutoCancel(true)
     }
     private fun updateNotification(msg: String, progress: Int) {
         val manager = NotificationManagerCompat.from(this)
